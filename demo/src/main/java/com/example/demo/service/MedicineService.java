@@ -8,7 +8,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable; // Correct Pageable import
+import org.springframework.data.domain.PageRequest; // Correct PageRequest import
+
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +32,7 @@ public class MedicineService {
         this.medicineRepository = medicineRepository;
     }
 
-    public void loadMedicinesFromJson() {
+   /* public void loadMedicinesFromJson() {
         try {
             // Charger le fichier JSON depuis le dossier resources/
             ClassPathResource resource = new ClassPathResource("fixedMedicine.json");
@@ -53,10 +57,12 @@ public class MedicineService {
             throw new RuntimeException("❌ Erreur lors du chargement du JSON", e);
         }
     }
+
+
     @PostConstruct
     public void init() {
         loadMedicinesFromJson();
-    }
+    }*/
     public List<Medicine> getMedicinesByNameAndUses(String name, String uses) {
         // Log to debug
         System.out.println("Searching for medicines with name: " + name + " and uses: " + uses);
@@ -75,5 +81,8 @@ public class MedicineService {
 
     public List<Medicine> getAllMedicines() {
         return medicineRepository.findAll();
+    }
+    public Page<Medicine> getMedicines(Pageable pageable) {
+        return medicineRepository.findAll(pageable);  // Find medicines with pagination
     }
 }

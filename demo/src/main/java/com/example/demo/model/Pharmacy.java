@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name= "pharmacy")
 @Data
@@ -33,6 +36,8 @@ public class Pharmacy {
     @JsonProperty("cle")
     @Column(name = "api_key")  // Optional: Use a custom column name in the database
     private String apiKey;
-
+    // Relation Many-to-Many avec quantité via PharmacyMedicine
+    @OneToMany(mappedBy = "pharmacy", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PharmacyMedicine> pharmacyMedicines = new ArrayList<>();
 
 }

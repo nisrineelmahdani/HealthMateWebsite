@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "Medicines")
 @Data
@@ -41,4 +44,6 @@ public class Medicine {
 
     @JsonProperty("image_url")
     private String imageUrl;
+
+
 }

@@ -17,13 +17,6 @@ public class DemoApplication {
 	}
 
 
-	@Bean
-	CommandLineRunner runJsonFixer() {
-		return args -> {
-			System.out.println("🔄 Fixing JSON...");
-			JsonFixer.fixJson();
-			System.out.println("✅ JSON Fixing Completed!");
-		};
-	}
+
 
 }

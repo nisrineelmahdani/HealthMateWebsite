@@ -1,15 +1,24 @@
 package com.example.demo.controller;
+import org.springframework.data.domain.Page;
 
 import com.example.demo.model.Medicine;
 import com.example.demo.model.Pharmacy;
 import com.example.demo.service.MedicineService;
 import com.example.demo.service.PharmacyService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import org.springframework.data.domain.Pageable; // Correct Pageable import
+import org.springframework.data.domain.PageRequest; // Correct PageRequest import
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -22,17 +31,18 @@ public class MedicineController {
 
 
     @GetMapping
-    public List<Medicine> getMedicines() {
-        return
-                medicineService.getAllMedicines();
+    public Page<Medicine> getMedicines(@RequestParam(defaultValue = "0") int page,
+                                       @RequestParam(defaultValue = "100") int size) {
+        Pageable pageable = PageRequest.of(page, size);  // Create Pageable object
+        return medicineService.getMedicines(pageable);
     }
 
-    @GetMapping("/load")
+   /* @GetMapping("/load")
     public String loadMedicines() {
         medicineService.loadMedicinesFromJson();
         return "✅ Medicines have been loaded!";
     }
-
+*/
 
 
 
