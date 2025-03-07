@@ -32,7 +32,7 @@ public class MedicineController {
 
     @GetMapping
     public Page<Medicine> getMedicines(@RequestParam(defaultValue = "0") int page,
-                                       @RequestParam(defaultValue = "100") int size) {
+                                       @RequestParam(defaultValue = "200") int size) {
         Pageable pageable = PageRequest.of(page, size);  // Create Pageable object
         return medicineService.getMedicines(pageable);
     }
