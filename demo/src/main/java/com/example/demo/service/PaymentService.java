@@ -23,24 +23,21 @@ public class PaymentService {
         return paymentRepository.findById(id);
     }
 
-    public List<Payment> getPaymentByOrderId(Long orderId){
-        return paymentRepository.findByOrderId(orderId);
-    }
+
 
     public void deletePayment (Long payId){
         paymentRepository.deleteById(payId);
     }
+
     public Payment updatePayment(Long paymentId, Payment updatedPayment) {
         if (paymentRepository.existsById(paymentId)) {
             updatedPayment.setId(paymentId);
             return paymentRepository.save(updatedPayment);
         } else {
-            // Handle payment not found case
+
             throw new RuntimeException("Payment not found");
         }
     }
 
-    public List<Payment> getPaymentsByOrderId(Long orderId) {
-        return  paymentRepository.findByOrderId(orderId);
-    }
+
 }

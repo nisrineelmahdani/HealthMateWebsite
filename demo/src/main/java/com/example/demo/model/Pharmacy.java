@@ -20,6 +20,7 @@ public class Pharmacy {
     private Long id;
 
     @JsonProperty("pharmacie")
+    @Column(unique = true)
     private String name;
     @JsonProperty("lien")
     private String link;
@@ -36,7 +37,7 @@ public class Pharmacy {
     @JsonProperty("cle")
     @Column(name = "api_key")  // Optional: Use a custom column name in the database
     private String apiKey;
-    // Relation Many-to-Many avec quantité via PharmacyMedicine
+
     @OneToMany(mappedBy = "pharmacy", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PharmacyMedicine> pharmacyMedicines = new ArrayList<>();
 

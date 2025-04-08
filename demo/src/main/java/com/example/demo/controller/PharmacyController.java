@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 
 
@@ -61,7 +61,7 @@ public class PharmacyController {
     @Autowired
     private PharmacyMedicineRepository pharmacyMedicineRepository;
 
-    // Ajouter un médicament avec une quantité à une pharmacie
+
     @PostMapping("/{pharmacyId}/medicines/{medicineId}")
     public ResponseEntity<PharmacyMedicine> addMedicineToPharmacyWithQuantity(
             @PathVariable Long pharmacyId,

@@ -44,8 +44,16 @@ public class SecurityConfiguration {
         http
                 .csrf().disable() // Disable CSRF protection for API calls
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/api/Medicines/load", "/orders" , "/api/payment" , "/api/Dutypharmacies" , "/api/Dutypharmacies/filter" , "/api/auth/register" , "/api/auth/login" , "/api/Medicines" , "/api/pharmacy-medicines" , "api/pharmacy/{pharmacyId}/medicine/{medicineId}" , "api/pharmacy/{pharmacyId}/medicine/{medicineId}" , "/api/Medicines?page=0&size=10").permitAll() // Permit GET/POST for /orders
-                        .anyRequest().authenticated() // Authenticated access for other requests
+                        .requestMatchers(
+                                "/api/Medicines/load", "/api/orders", "/api/payment", "/api/Dutypharmacies",
+                                "/api/Dutypharmacies/filter", "/api/auth/register", "/api/auth/login", "/api/Medicines",
+                                "/api/pharmacy-medicines", "/api/pharmacy/{pharmacyId}/medicine/{medicineId}",
+                                "/api/DyalisisCenters", "/api/orders/create", "/api/orders/{orderId}/item","/api/orders",
+                                "/api/Medicines?page=0&size=10", "/api/order-items" , "/api/orders/**", "/api/Medicines", "/api/Medicines/filter"
+                        ).permitAll()
+
+                        // Permit GET/POST for /orders
+                        .anyRequest().permitAll()// Authenticated access for other requests
                 )
                 .formLogin(form -> form
                         .loginPage("/login")

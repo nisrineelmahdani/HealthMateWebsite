@@ -45,7 +45,9 @@ public class Medicine {
     @JsonProperty("image_url")
     private String imageUrl;
 
-    // Relation Many-to-Many avec quantité via PharmacyMedicine
-    @OneToMany(mappedBy = "medicine", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PharmacyMedicine> pharmacyMedicines = new ArrayList<>();
+
+    private int price;
+
+
+
 }

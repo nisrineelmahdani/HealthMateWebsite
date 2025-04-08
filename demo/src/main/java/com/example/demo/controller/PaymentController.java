@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/payment")
 public class PaymentController {
@@ -29,11 +29,11 @@ public class PaymentController {
 
     }
     // Get all payments for a specific order
-    @GetMapping("/order/{orderId}")
-    public ResponseEntity<List<Payment>> getPaymentsByOrderId(@PathVariable Long orderId) {
-        List<Payment> payments = paymentService.getPaymentsByOrderId(orderId);
-        return ResponseEntity.ok(payments);
-    }
+//    @GetMapping("/order/{orderId}")
+//    public ResponseEntity<List<Payment>> getPaymentsByOrderId(@PathVariable Long orderId) {
+//        List<Payment> payments = paymentService.getPaymentsByOrderId(orderId);
+//        return ResponseEntity.ok(payments);
+//    }
     @PutMapping("/{id}")
     public ResponseEntity<Payment> updatePayment(@PathVariable Long id, @RequestBody Payment payment) {
         Payment updatedPayment = paymentService.updatePayment(id, payment);

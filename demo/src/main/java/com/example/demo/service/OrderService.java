@@ -1,7 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Order;
+import com.example.demo.model.OrderItem;
+import com.example.demo.model.Payment;
+import com.example.demo.repository.OrderItemRepository;
 import com.example.demo.repository.OrderRepository;
+import com.example.demo.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +20,11 @@ import java.util.Optional;
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
+    @Autowired
+    private PaymentRepository paymentRepository;
 
     public List<Order> getAllOrders(){
 
@@ -29,9 +37,20 @@ public class OrderService {
 
     }
     public Order createOrder(Order order){
-        return orderRepository.save(order);
-    }
 
+        Order savedOrder = orderRepository.save(order);
+
+
+//        for (OrderItem orderItem : order.getOrderItems()) {
+//            orderItem.setOrder(savedOrder); // lier l'Order à l'OrderItem
+//            orderItemRepository.save(orderItem);
+//        }
+
+        return savedOrder;
+    }
+    public Payment processPayment(Payment payment) {
+        return paymentRepository.save(payment);
+    }
     public Order updateOrder(Long id , Order orderDetails){
         return orderRepository.findById(id).map(order -> {
             order.setPatientName(orderDetails.getPatientName());

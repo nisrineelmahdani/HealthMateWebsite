@@ -5,8 +5,11 @@ import com.example.demo.web.dto.UserRegistrationDto;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.Optional;
+
 public interface UserService extends UserDetailsService {
     User save(UserRegistrationDto registrationDto);
     boolean authenticate(String email, String password);
 
+    Optional<User> login(String email, String password);
 }

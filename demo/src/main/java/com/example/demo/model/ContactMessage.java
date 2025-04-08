@@ -17,6 +17,7 @@ public class ContactMessage {
     private String name;
 
     private  String phone;
+    private  String email;
 
     @Column(nullable = false , columnDefinition = "TEXT")
     private String message;

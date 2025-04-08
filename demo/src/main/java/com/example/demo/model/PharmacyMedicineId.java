@@ -20,6 +20,9 @@ public class PharmacyMedicineId implements Serializable {
         this.medicineId = medicineId;
     }
 
+    public PharmacyMedicineId(Long id) {
+    }
+
     public Long getPharmacyId() {
         return pharmacyId;
     }

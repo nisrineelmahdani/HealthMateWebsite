@@ -5,7 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "Payment")
 @Data
 public class Payment {
 
@@ -13,9 +13,7 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "Order_id", nullable = false)
-    private Order order;
+
 
     private String CardNumber;
 
